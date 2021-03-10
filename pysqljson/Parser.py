@@ -13,7 +13,6 @@ class Parser:
     # def parse_combinators(self, combs):
 
     def _start_transition(self, key):
-        print('@', key)
         if regexs.regex_and(key):
             self.state = states.STATE_AND
         elif regexs.regex_or(key):
@@ -102,7 +101,4 @@ class Parser:
         keys = list(jsn.keys())
         while len(keys) > 0:
             key = keys.pop()
-            print(key)
-            print(self.state)
             self._state_transition(key)
-            print(self.state)
