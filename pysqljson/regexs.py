@@ -46,4 +46,4 @@ def regex_like(text):
 
 
 def regex_bt(text):
-    return _match('..', text)
+    return _match('\.\.', text)
