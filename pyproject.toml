@@ -1,0 +1,5 @@
+[build-system]
+requires = [
+    "pypika"
+]
+build-backend = "setuptools.build_meta"
