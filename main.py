@@ -1,4 +1,4 @@
-import Parser
+from src import Parser
 
 parser = Parser.Parser()
 print(parser.parse('{"a": 2, "b": 2}'))
