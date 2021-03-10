@@ -2,15 +2,15 @@ import numbers
 
 
 def is_num(val):
-    isinstance(val, numbers.Number)
+    return isinstance(val, numbers.Number)
 
 
 def is_str(val):
-    isinstance(val, str)
+    return isinstance(val, str)
 
 
 def is_list(val):
-    isinstance(val, list)
+    return isinstance(val, list)
 
 
 def includes(lst, value):

@@ -1,10 +1,10 @@
-from src import Parser
+from pysqljson import Parser
 
 parser = Parser.Parser()
-print(parser.parse('{"a": 2, "b": 2}'))
+parser.parse('{"&&": 2}', ['c', 'e'])
 
 def print_hi(name):
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    print('Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
 
 # Press the green button in the gutter to run the script.

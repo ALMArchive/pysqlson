@@ -4,6 +4,7 @@ import regexs
 import utilities
 import exceptions
 
+
 class Parser:
     state = states.STATE_START
     allowed_props = []
@@ -12,6 +13,7 @@ class Parser:
     # def parse_combinators(self, combs):
 
     def _start_transition(self, key):
+        print('@', key)
         if regexs.regex_and(key):
             self.state = states.STATE_AND
         elif regexs.regex_or(key):
@@ -80,14 +82,14 @@ class Parser:
             self._and_transition(key)
         elif self.state == states.STATE_PROP:
             self._prop_transition(key)
+        else:
+            raise exceptions.ERROR_INVALID_STATE
 
     def parse(self, json_str, allowed_props):
         if not utilities.is_str(json_str):
             raise exceptions.ERROR_PASS_PARSE_STRING
-
         if not utilities.is_list(allowed_props):
             raise exceptions.ERROR_PASS_PARSE_LIST
-
         for prop in allowed_props:
             if not utilities.is_str(prop):
                 raise exceptions.ERROR_ALLOWED_PROPS_MUST_BE_STRING
@@ -101,3 +103,6 @@ class Parser:
         while len(keys) > 0:
             key = keys.pop()
             print(key)
+            print(self.state)
+            self._state_transition(key)
+            print(self.state)

@@ -10,7 +10,7 @@ def regex_and(text):
 
 
 def regex_or(text):
-    return _match('||', text)
+    return _match('\|\|', text)
 
 
 def regex_eq(text):
