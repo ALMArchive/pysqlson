@@ -3,6 +3,7 @@ from pysqljson import Parser
 parser = Parser.Parser()
 parser.parse(None, '{"&&": 2}', [])
 
+
 def print_hi(name):
     print('Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 

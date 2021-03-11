@@ -76,5 +76,6 @@ class TestStateManager(unittest.TestCase):
         sm.pop_state()
         self.assertEqual(sm.state, states.STATE_START)
 
+
 if __name__ == '__main__':
     unittest.main()
