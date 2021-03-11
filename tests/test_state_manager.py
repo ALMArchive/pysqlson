@@ -2,6 +2,7 @@ import unittest
 from pysqljson import StateManager, states, exceptions
 from pysqljson import consts
 
+
 class TestStateManager(unittest.TestCase):
     def test_start_state(self):
         sm = StateManager.StateManager([], consts.OPERATORS)
