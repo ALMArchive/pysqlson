@@ -1,6 +1,5 @@
 import json
 from pysqljson import states, utilities, exceptions, StateManager, consts
-# import consts
 
 
 class Parser:
