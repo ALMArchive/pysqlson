@@ -42,6 +42,39 @@ class TestStateManager(unittest.TestCase):
         sm.transition('a')
         self.assertEqual(sm.state, states.STATE_PROP)
 
+    # Operator State Tests
+    def test_or_state_prop_transition(self):
+        sm = StateManager.StateManager(['a'])
+        sm.transition('||')
+        sm.transition('a')
+        sm.transition('=')
+        self.assertEqual(sm.state, states.STATE_OPERATOR)
+
+    # Val State Tests
+    def test_or_state_prop_transition(self):
+        sm = StateManager.StateManager(['a'])
+        sm.transition('||')
+        sm.transition('a')
+        sm.transition('=')
+        sm.transition('1')
+        self.assertEqual(sm.state, states.STATE_VAL)
+
+    # Pop State Tests
+    def test_or_state_prop_transition(self):
+        sm = StateManager.StateManager(['a'])
+        sm.transition('||')
+        sm.transition('a')
+        sm.transition('=')
+        sm.transition('1')
+        self.assertEqual(sm.state, states.STATE_VAL)
+        sm.pop_state()
+        self.assertEqual(sm.state, states.STATE_OPERATOR)
+        sm.pop_state()
+        self.assertEqual(sm.state, states.STATE_PROP)
+        sm.pop_state()
+        self.assertEqual(sm.state, states.STATE_OR)
+        sm.pop_state()
+        self.assertEqual(sm.state, states.STATE_START)
 
 if __name__ == '__main__':
     unittest.main()

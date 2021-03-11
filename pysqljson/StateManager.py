@@ -5,6 +5,7 @@ class StateManager:
     state = states.STATE_START
     state_stack = []
     allowed_props = []
+    operators = ['=', '<', '<=', '>', '>=', '!=', '..', 'in', 'like']
 
     def __init__(self, allowed_props):
         self.allowed_props = allowed_props
@@ -37,37 +38,11 @@ class StateManager:
         else:
             raise exceptions.ERROR_INVALID_KEY_FOR_PROP_STATE
 
-    def _operator_transition(self, operator, key):
-        if regexs.regex_eq(operator):
-            if utilities.is_str(key) or utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_neq(operator):
-            if utilities.is_str(key) or utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_le(operator):
-            if utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_lt(operator):
-            if utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_ge(operator):
-            if utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_gt(operator):
-            if utilities.is_num(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_bt(operator):
-            if utilities.is_list(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_in(operator):
-            if utilities.is_list(key):
-                self.state = states.STATE_VAL
-        elif regexs.regex_like(operator):
-            if utilities.is_str(key):
-                self.state = states.STATE_VAL
+    def _operator_transition(self, key):
+        if utilities.is_str(key) or utilities.is_num(key) or utilities.is_list(key):
+            self.state = states.STATE_VAL
         else:
             raise exceptions.ERROR_INVALID_KEY_FOR_OPERATOR_STATE
-        raise exceptions.ERROR_INVALID_VAL_FOR_OPERATOR
 
     def pop_state(self):
         if len(self.state_stack) == 0:
@@ -75,7 +50,7 @@ class StateManager:
         self.state = self.state_stack.pop()
 
     def transition(self, key):
-        self.state_stack.insert(0, key)
+        self.state_stack.append(self.state)
         if self.state == states.STATE_START:
             self._start_transition(key)
         elif self.state == states.STATE_AND:
@@ -84,5 +59,7 @@ class StateManager:
             self._and_transition(key)
         elif self.state == states.STATE_PROP:
             self._prop_transition(key)
+        elif self.state == states.STATE_OPERATOR:
+            self._operator_transition(key)
         else:
             raise exceptions.ERROR_INVALID_STATE

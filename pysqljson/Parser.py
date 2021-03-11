@@ -5,7 +5,6 @@ from pysqljson import states, utilities, exceptions
 class Parser:
     state = states.STATE_START
     allowed_props = []
-    operators = ['=', '<', '<=', '>', '>=', '!=', '..', 'in', 'like']
 
     def parse(self, json_str, allowed_props):
         if not utilities.is_str(json_str):
