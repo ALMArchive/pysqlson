@@ -1,50 +1,50 @@
 import unittest
 from pysqljson import StateManager, states, exceptions
-
+from pysqljson import consts
 
 class TestStateManager(unittest.TestCase):
     def test_start_state(self):
-        sm = StateManager.StateManager([])
+        sm = StateManager.StateManager([], consts.OPERATORS)
         self.assertEqual(sm.state, states.STATE_START)
 
     # Start State Tests
     def test_start_state_and_transition(self):
-        sm = StateManager.StateManager([])
+        sm = StateManager.StateManager([], consts.OPERATORS)
         sm.transition('&&')
         self.assertEqual(sm.state, states.STATE_AND)
 
     def test_start_state_or_transition(self):
-        sm = StateManager.StateManager([])
+        sm = StateManager.StateManager([], consts.OPERATORS)
         sm.transition('||')
         self.assertEqual(sm.state, states.STATE_OR)
 
     def test_start_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('a')
         self.assertEqual(sm.state, states.STATE_PROP)
 
     def test_start_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('a')
         self.assertEqual(sm.state, states.STATE_PROP)
 
     # And State Tests
     def test_and_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('&&')
         sm.transition('a')
         self.assertEqual(sm.state, states.STATE_PROP)
 
     # Or State Tests
     def test_or_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('||')
         sm.transition('a')
         self.assertEqual(sm.state, states.STATE_PROP)
 
     # Operator State Tests
     def test_or_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('||')
         sm.transition('a')
         sm.transition('=')
@@ -52,7 +52,7 @@ class TestStateManager(unittest.TestCase):
 
     # Val State Tests
     def test_or_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('||')
         sm.transition('a')
         sm.transition('=')
@@ -61,7 +61,7 @@ class TestStateManager(unittest.TestCase):
 
     # Pop State Tests
     def test_or_state_prop_transition(self):
-        sm = StateManager.StateManager(['a'])
+        sm = StateManager.StateManager(['a'], consts.OPERATORS)
         sm.transition('||')
         sm.transition('a')
         sm.transition('=')

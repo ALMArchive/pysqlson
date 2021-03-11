@@ -13,6 +13,10 @@ def is_list(val):
     return isinstance(val, list)
 
 
+def is_dict(val):
+    return isinstance(val, dict)
+
+
 def includes(lst, value):
     if value in lst:
         return True

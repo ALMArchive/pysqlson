@@ -5,10 +5,14 @@ class StateManager:
     state = states.STATE_START
     state_stack = []
     allowed_props = []
-    operators = ['=', '<', '<=', '>', '>=', '!=', '..', 'in', 'like']
+    operators = []
 
-    def __init__(self, allowed_props):
+    def get_state(self):
+        return self.state
+
+    def __init__(self, allowed_props, operators):
         self.allowed_props = allowed_props
+        self.operators = operators
 
     def _start_transition(self, key):
         if regexs.regex_and(key):

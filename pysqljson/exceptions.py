@@ -9,3 +9,4 @@ ERROR_INVALID_KEY_FOR_OPERATOR_STATE = Exception('invalid key for operator state
 ERROR_INVALID_VAL_FOR_OPERATOR = Exception('invalid val for operator')
 ERROR_INVALID_STATE = Exception('invalid state')
 ERROR_NO_STATE_TO_POP = Exception('no state to pop')
+ERROR_INVALID_CURRENT_OPERATOR = Exception('invalid current operator')

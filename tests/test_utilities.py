@@ -19,6 +19,12 @@ class TestUtilities(unittest.TestCase):
         self.assertFalse(utilities.is_list(2))
         self.assertFalse(utilities.is_list(''))
 
+    def test_dict(self):
+        self.assertTrue(utilities.is_dict({}))
+        self.assertFalse(utilities.is_dict([]))
+        self.assertFalse(utilities.is_dict(2))
+        self.assertFalse(utilities.is_dict(''))
+
     def test_includes(self):
         self.assertTrue(utilities.includes([1, 2, 3], 1))
         self.assertTrue(utilities.includes(['a', 'b', 'c'], 'a'))
