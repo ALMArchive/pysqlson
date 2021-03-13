@@ -3,7 +3,7 @@ import unittest
 from pysqljson import exceptions, Parser
 
 
-class TestExceptions(unittest.TestCase):
+class TestParserExceptions(unittest.TestCase):
     def test_pass_parse_string(self):
         with self.assertRaises(Exception) as cm:
             parser = Parser.Parser()

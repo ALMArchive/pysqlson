@@ -3,7 +3,7 @@ import unittest
 from pysqljson import StateManager, exceptions, consts
 
 
-class TestExceptions(unittest.TestCase):
+class TestStateManagerExceptions(unittest.TestCase):
     # Start State Tests
     def test_invalid_key_for_start_state(self):
         sm = StateManager.StateManager([], consts.OPERATORS)
