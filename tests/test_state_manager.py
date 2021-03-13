@@ -2,6 +2,7 @@ import unittest
 from pysqljson import StateManager, states, exceptions
 from pysqljson import consts
 
+
 class TestStateManager(unittest.TestCase):
     def test_start_state(self):
         sm = StateManager.StateManager([], consts.OPERATORS)
@@ -75,6 +76,7 @@ class TestStateManager(unittest.TestCase):
         self.assertEqual(sm.state, states.STATE_OR)
         sm.pop_state()
         self.assertEqual(sm.state, states.STATE_START)
+
 
 if __name__ == '__main__':
     unittest.main()

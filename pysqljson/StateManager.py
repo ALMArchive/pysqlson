@@ -60,7 +60,7 @@ class StateManager:
         elif self.state == states.STATE_AND:
             self._and_transition(key)
         elif self.state == states.STATE_OR:
-            self._and_transition(key)
+            self._or_transition(key)
         elif self.state == states.STATE_PROP:
             self._prop_transition(key)
         elif self.state == states.STATE_OPERATOR:
